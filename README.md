@@ -17,7 +17,6 @@ This repository contains all laboratory activities and examinations completed fo
 - [Examinations](#📝-examinations)
   - [Lab Exam - Midterms: Light Intensity Monitoring System](#lab-exam---midterms-light-intensity-monitoring-system)
   - [Lab Exam - Finals: Button Press Detection with API Integration](#lab-exam---finals-button-press-detection-with-api-integration)
-- [Activity Summary](#📊-activity-summary)
 
 ---
 
@@ -142,6 +141,8 @@ This repository contains all laboratory activities and examinations completed fo
 - Functions are used to differentiate between auto and manual modes.
 - Serial commands dynamically update threshold values, validated against predefined ranges.
 - Intensity readings are scaled to percentages for easier interpretation.
+
+---
 
 ### Lab Exam - Finals: Button Press Detection with API Integration
 **Description**: Tracks button presses on an Arduino and communicates with an external API to log or trigger events based on button interactions.
