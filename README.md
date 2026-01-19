@@ -2,78 +2,148 @@
 
 # COSC 111 - Laboratory Activities Portfolio
 
-This repository contains all laboratory activities and examinations completed for COSC 111. Each activity highlights key concepts in embedded systems programming, sensor interfacing, serial communication, and Arduino-Python integration.
+This repository showcases all laboratory exercises and examination projects completed during COSC 111. Each activity focuses on essential concepts in embedded systems, sensor integration, serial communication, and programming fundamentals.
+
+---
 
 ## 📁 Table of Contents
-- [Laboratory Activities](#🔬-laboratory-activities)
-  - [Laboratory 1: Basic LED Sequential Control](#laboratory-1-basic-led-sequential-control)
-  - [Laboratory 2: LED Control with PWM Brightness](#laboratory-2-led-control-with-pwm-brightness)
-  - [Laboratory 3: Fire Detection System](#laboratory-3-fire-detection-system)
-  - [Laboratory 4: Light Detection Alert with Serial Control](#laboratory-4-light-detection-alert-with-serial-control)
-  - [Laboratory 5: RGB LED Control via Serial Communication](#laboratory-5-rgb-led-control-via-serial-communication)
-  - [Laboratory 6: Bi-directional Serial Communication](#laboratory-6-bi-directional-serial-communication)
-  - [Laboratory 7: Web API Integration with FastAPI](#laboratory-7-web-api-integration-with-fastapi)
-- [Examinations](#📝-examinations)
-  - [Lab Exam - Midterms: Light Intensity Monitoring System](#lab-exam---midterms-light-intensity-monitoring-system)
-  - [Lab Exam - Finals: Button Press Detection with API Integration](#lab-exam---finals-button-press-detection-with-api-integration)
-- [Activity Summary](#📊-activity-summary)
+...
 
 ---
 
 ## 🔬 Laboratory Activities
 
 ### Laboratory 1: Basic LED Sequential Control
-**Description**: A basic Arduino program demonstrating sequential LED control using digital output pins. Five LEDs are connected to pins and turned on/off in sequence.  
-**Components**: 5 LEDs, 5 resistors, Arduino Uno.
+**Description**: A foundational Arduino program demonstrating sequential lighting control. Five LEDs connected to pins 12, 11, 10, 9, and 8 illuminate one at a time in a defined sequence.
+
+**Features**:
+- Activates LEDs sequentially in the forward direction.
+- Implements a 1-second delay between each LED transition.
+- Utilizes a simple looping structure for repeated control.
+
+**Code Structure**:
+- An array captures and organizes the pin assignments for the LEDs.
+- `setup()`: Sets all the LED pins as outputs.
+- `loop()`: Sequentially powers LEDs ON and OFF in a continuous loop.
+
+---
 
 ### Laboratory 2: LED Control with PWM Brightness
-**Description**: An advanced LED control system showcasing digital and PWM-based brightness control.  
-**Features**: Fading effect for PWM-capable pins, sequential and reverse activation.
+**Description**: Expands LED control by introducing PWM (Pulse Width Modulation) for smooth brightness variation. Capable pins (such as 9, 10, and 11) are dimmed or brightened using fading effects.
+
+**Features**:
+- Smooth dimming and brightening of LEDs using PWM.
+- Differentiates between standard and PWM-capable pins for brightness control.
+- Includes forward and reverse animation of LED patterns.
+
+**Code Structure**:
+- Uses `analogWrite()` for brightness control on compatible pins.
+- Defines conditional logic to apply either digital or analog control based on hardware capabilities.
+- Implements loops for both sequential and reverse animations.
+
+---
 
 ### Laboratory 3: Fire Detection System
-**Description**: A sensor-based fire detection system monitoring temperature and light intensity to trigger an alert.  
-**Features**: Real-time temperature and brightness monitoring, alert triggering when thresholds are exceeded.
+**Description**: Combines sensor readings from a thermistor and a photoresistor to detect fire-like conditions. If threshold limits for both temperature and brightness are exceeded, an alert is triggered through LEDs or a buzzer.
+
+**Features**:
+- Reads temperature using a thermistor and the Steinhart-Hart equation.
+- Monitors ambient brightness with a photoresistor.
+- Activates alerts when sensor readings indicate possible fire conditions.
+
+**Code Structure**:
+- `readTemperature()` converts the analog signal from the thermistor into degrees Celsius.
+- `readBrightness()` provides a scaled measurement of light intensity.
+- The main loop monitors readings and triggers alerts when values exceed predefined limits.
+
+---
 
 ### Laboratory 4: Light Detection Alert with Serial Control
-**Description**: A light detection system with serial commands to stop alerts.  
-**Features**: Continuous brightness monitoring, threshold-based activation, serial interface.
+**Description**: Monitors light intensity and activates a blinking alert if the brightness surpasses the threshold. Serial communication allows users to send commands (e.g., "stop") to deactivate the alert remotely.
+
+**Features**:
+- Real-time monitoring of light levels.
+- Threshold-based activation and deactivation of alerts.
+- User commands via serial input, such as stopping the blinking alert.
+
+**Code Structure**:
+- A dedicated function processes brightness readings and detects when they exceed the threshold.
+- Serial communication is used to parse user commands and control the alert state.
+- Dynamic management of the system’s alert activation.
+
+---
 
 ### Laboratory 5: RGB LED Control via Serial Communication
-**Description**: Arduino-Python communication for controlling RGB LEDs via serial commands.  
-**Features**: Python menu interface, serial command parsing, modular code structure.
+**Description**: Implements a bi-directional communication system between Arduino and Python. By sending serial commands from Python, users can control RGB LEDs connected to the Arduino, with the option for special mixed-color effects.
+
+**Features**:
+- Serial-based command system for toggling individual or grouped LED colors.
+- Custom control options, including "All LEDs ON" and specific mixes like "Violet" (Red + Blue).
+- Modular design split between Arduino for LED actions and Python for user interaction.
+
+**Code Structure**:
+- Modular functions in the Arduino sketch process serial input commands.
+- Python provides an interactive GUI-like menu for sending commands.
+- Each serial input command maps directly to an LED action.
+
+---
 
 ### Laboratory 6: Bi-directional Serial Communication
-**Description**: Two-way communication between Arduino and Python, featuring push button input and LED toggling.  
-**Features**: Real-time serial data exchange, edge detection, Python command processing.
+**Description**: Demonstrates two-way communication between Arduino and Python. Physical events such as button presses on the Arduino trigger actions on the Python side, which then sends responses back to control external hardware.
+
+**Features**:
+- Button presses on the Arduino are detected and transmitted as serial messages to Python.
+- Python evaluates the input and sends corresponding commands to toggle LEDs.
+- Output is dynamically updated in real time, enabling full interaction between both systems.
+
+**Code Structure**:
+- Modular header files define LED behavior and simplify toggling mechanisms.
+- Python orchestrates communication, receiving data from Arduino and issuing control commands back.
+- The Arduino loop continuously scans the state of buttons and reacts to serial commands.
+
+---
 
 ### Laboratory 7: Web API Integration with FastAPI
-**Description**: A RESTful API-based system for controlling Arduino LEDs.  
-**Features**: HTTP API endpoints for LED control, integration with FastAPI framework.
+**Description**: Integrates web-based functionality with embedded systems by using FastAPI for creating RESTful endpoints. These endpoints control various Arduino hardware components, such as LEDs.
+
+**Features**:
+- HTTP-based control of hardware, including toggling individual LEDs or activating all at once.
+- FastAPI backend handles client requests and communicates with Arduino via serial.
+- Real-time status updates, including hardware feedback.
+
+**Code Structure**:
+- API endpoints implement GET methods for various actions.
+- Arduino listens for character-based serial commands and executes LED actions accordingly.
+- Python manages both the API layer and the server-to-serial bridge.
 
 ---
 
 ## 📝 Examinations
 
 ### Lab Exam - Midterms: Light Intensity Monitoring System
-**Description**: A system with automatic/manual modes for light intensity monitoring.  
-**Features**: User-configurable thresholds for light intensity, environment detection (Cloudy/Clear).
+**Description**: A dual-mode system for measuring and monitoring light intensity. Supports both automatic and manual threshold settings, with visual feedback provided by LEDs.
 
-### Lab Exam - Finals: Button Press Detection with API Integration
-**Description**: A system detecting button presses on the Arduino and sending HTTP requests to an API.  
-**Features**: Edge-detection for button input, serial communication, external API integration.
+**Features**:
+- Automatically adapts thresholds based on preset parameters (e.g., clear or cloudy conditions).
+- Manual mode allows users to customize intensity thresholds using serial commands.
+- LEDs indicate the current intensity range (low, medium, or high).
+
+**Code Structure**:
+- Functions are used to differentiate between auto and manual modes.
+- Serial commands dynamically update threshold values, validated against predefined ranges.
+- Intensity readings are scaled to percentages for easier interpretation.
 
 ---
 
-## 📊 Activity Summary
+### Lab Exam - Finals: Button Press Detection with API Integration
+**Description**: Tracks button presses on an Arduino and communicates with an external API to log or trigger events based on button interactions.
 
-| **Activity**     | **Focus Area**         | **Key Concepts**                             |
-|-------------------|------------------------|----------------------------------------------|
-| **Lab 1**        | Basic I/O              | Digital output, loops, arrays               |
-| **Lab 2**        | PWM Control            | Analog output, PWM, brightness control      |
-| **Lab 3**        | Sensors                | Analog input, thermistor, fire detection    |
-| **Lab 4**        | Serial I/O             | Serial communication, command parsing       |
-| **Lab 5**        | Arduino-Python         | Modular code, command interface             |
-| **Lab 6**        | Bi-directional Comm    | Two-way serial, edge detection              |
-| **Lab 7**        | Web Integration        | RESTful API, FastAPI, HTTP requests         |
-| **Midterm Exam** | Advanced Sensors       | Mode switching, threshold management        |
-| **Final Exam**   | API Integration        | External API communication                  |
+**Features**:
+- Edge detection ensures accurate tracking of momentary button presses.
+- Sends HTTP requests to an external server, using endpoints to log button events or control connected devices.
+- Structured serial communication between Arduino and Python ensures seamless data exchange.
+
+**Code Structure**:
+- Each button interaction is assigned a unique code sent over the serial interface.
+- Python listens for serial input and issues HTTP API requests in response.
+- Modular functions define button states and implement error handling for communication.
