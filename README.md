@@ -1,6 +1,3 @@
-# COSC111B_FINALPROJECT_MATIN-AO
-# COSC111B_FINALPROJECT_MATIN-AO
-
 # COSC 111 - Laboratory Activities Portfolio
 
 This repository contains all laboratory activities and examinations completed for COSC 111. Each activity highlights key concepts in embedded systems programming, sensor interfacing, serial communication, and Arduino-Python integration.
